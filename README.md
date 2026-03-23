@@ -158,12 +158,4 @@ Additional project documents are available in `docs/`, including:
 - `SMS_TO_MULTIPLE_PROCTORS_PLAN.md`
 - `SafeLink_NSTU_Project_Documentation.md`
 
-## Contributing
 
-1. Create a feature branch.
-2. Make your changes.
-3. Open a pull request with a clear summary.
-
-## License
-
-No license file is currently present in the repository root.
