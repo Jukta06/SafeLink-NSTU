@@ -145,5 +145,6 @@ Run Flutter tests:
 flutter test
 ```
 
-
+## Apk file
+Download link: https://github.com/Jukta06/SafeLink-NSTU/releases/tag/Apk_file
 
