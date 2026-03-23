@@ -1,426 +1,169 @@
-# SafeLink - Campus Safety & Emergency Alert System
+# SafeLink NSTU
 
-![SafeLink Logo](assets/images/splash_logo.png)
+SafeLink NSTU is a Flutter-based campus safety application with Firebase backend services and a Firebase Cloud Functions module.
 
-> A real-time safety and emergency alert system for NSTU (Noakhali Science and Technology University) campus designed to provide instant communication between students, proctors, and staff during emergencies.
+This README is intentionally based on files that currently exist in this repository so setup information stays accurate.
 
----
+## Repository
 
-## 📱 Overview
+- URL: https://github.com/Jukta06/SafeLink-NSTU
+- Flutter app package name: `safelink_n`
+- App version: `1.0.0+1`
 
-SafeLink is a comprehensive mobile application developed for campus safety management. The app enables students to quickly report emergencies, share their real-time GPS location, and receive instant alerts through a multi-tiered escalation system. Staff and proctors can monitor incidents in real-time and take immediate action.
+## Verified Tech Stack
 
-**Status:** Active Development | **Platform:** Flutter (iOS, Android, Web) | **Backend:** Firebase
+### Mobile/Web app
 
----
+- Flutter (Dart, SDK constraint `^3.9.2`)
+- Firebase: `firebase_core`, `firebase_auth`, `cloud_firestore`, `firebase_messaging`, `cloud_functions`
+- Location/Map: `geolocator`, `geocoding`, `google_maps_flutter`
+- Notifications: `flutter_local_notifications`
+- Device interaction: `permission_handler`, `sensors_plus`, `shake`, `volume_controller`
+- UI/utility: `google_fonts`, `shared_preferences`, `url_launcher`
 
-## ✨ Key Features
+### Cloud Functions (`functions`)
 
-### For Students:
-- 🆘 **One-Tap Emergency Alert** - Quick distress signal reporting
-- 📍 **Real-Time GPS Tracking** - Automatic location sharing with emergency responders
-- 🔔 **Instant Notifications** - Real-time updates on alert status
-- 👥 **Multiple Proctors** - Send emergency SMS to multiple registered proctors
-- 🔐 **Secure Authentication** - Phone OTP-based login system
-- 📞 **Direct Contact** - Quick access to emergency contacts
+- Runtime: Node.js `>=18`
+- Main libraries: `firebase-admin`, `firebase-functions`, `@sendgrid/mail`, `twilio`, `@google-cloud/tasks`
 
-### For Staff & Proctors:
-- 📊 **Real-Time Dashboard** - View active emergency alerts with location
-- 🗺️ **Live GPS Tracking** - Monitor student locations during emergencies
-- ⚡ **Escalation Workflow** - Multi-level alert escalation system
-- 📱 **SMS Notifications** - SMS and in-app alerts for new incidents
-- ✅ **Incident Management** - Update and close emergency reports
-- 📈 **Analytics & Reports** - Track incidents and response metrics
+## Verified Firebase Configuration In Repo
 
----
+- `firebase.json` configures:
+  - Firestore rules file: `firestore.rules`
+  - Functions source directory: `functions`
+  - Emulator ports: Functions `5001`, Firestore `8080`, UI `4000`
+- `lib/firebase_options.dart` is present and includes Firebase options for Web, Android, and Windows targets.
+- Firestore rules are stored in `firestore.rules`.
 
-## 🛠️ Tech Stack
+## Main App Structure
 
-### Frontend:
-- **Flutter** - Cross-platform mobile framework (iOS, Android, Web)
-- **Dart** - Programming language
-- **Provider** - State management
-- **GetX** - Navigation and reactive programming
-- **Firebase** - Backend services
+Top-level Flutter source structure:
 
-### Backend & Services:
-- **Firebase Firestore** - Real-time database
-- **Firebase Authentication** - OTP-based auth
-- **Firebase Cloud Functions** - Serverless backend
-- **Firebase Cloud Messaging (FCM)** - Push notifications
-- **Firebase Storage** - File storage
-- **Twilio SDK** - SMS notifications
+- `lib/main.dart`
+- `lib/presentation`
+- `lib/core`
+- `lib/data`
+- `lib/domain`
+- `lib/config`
+- `lib/firebase_options.dart`
 
-### External Services:
-- **Google Maps API** - GPS tracking and mapping
-- **Twilio** - Multi-channel messaging
+Platform folders present:
 
----
+- `android`
+- `ios`
+- `web`
+- `windows`
+- `linux`
+- `macos`
 
-## 📋 Prerequisites
+Backend and docs:
 
-Before running the project, ensure you have:
+- `functions`
+- `docs`
 
-- **Flutter SDK** (v3.0 or higher)
-- **Dart SDK** (v2.18 or higher)
-- **Android Studio** (for Android development)
-- **Xcode** (for iOS development on macOS)
-- **Firebase Project** (created and configured)
-- **Google Maps API Key**
-- **Twilio Account** (for SMS functionality)
+## Notable Implemented Modules (From Source Files)
 
----
+The repository currently includes code for:
 
-## 🚀 Installation & Setup
+- Auth screens and controllers (`login`, `signup`, `email verification`, `forgot password`, `profile setup`)
+- Home and alert-related screens (`alerts`, `alert detail`, `notification details`)
+- Role-specific screens (`proctor dashboard`, `proctorial dashboard`, `security dashboard`)
+- Location/map and SOS-related services (location service, shake detection, SMS/call escalation services)
+- Theme and route management
 
-### 1. Clone the Repository
+## Cloud Functions Exports (From `functions/index.js`)
+
+Current exported functions include:
+
+- `requestOtp` (callable)
+- `sendSignupOtpEmail` (Firestore trigger)
+- `sendSosAlert` (HTTP)
+- `acceptAlert` (HTTP)
+- `rejectAlert` (HTTP)
+- `getPendingAlerts` (HTTP)
+- `getAllAlerts` (HTTP)
+- `sendShakeAlertSMS` (callable)
+- `processEscalationSMS` (HTTP)
+- `processEscalationCall` (HTTP)
+
+## Local Development Setup
+
+### Prerequisites
+
+- Flutter SDK installed
+- Dart SDK (comes with Flutter)
+- Node.js 18+ (for `functions`)
+- Firebase CLI (for emulator/deploy workflows)
+
+### 1) Clone and install Flutter dependencies
 
 ```bash
 git clone https://github.com/Jukta06/SafeLink-NSTU.git
 cd SafeLink-NSTU
-```
-
-### 2. Install Dependencies
-
-```bash
-flutter clean
 flutter pub get
 ```
 
-### 3. Firebase Configuration
-
-#### Android:
-1. Download `google-services.json` from Firebase Console
-2. Place it in `android/app/`
-3. Update `android/build.gradle.kts` with your Firebase project details
-
-#### iOS:
-1. Download `GoogleService-Info.plist` from Firebase Console
-2. Place it in `ios/Runner/`
-3. Open `ios/Podfile` and run:
-   ```bash
-   cd ios && pod install && cd ..
-   ```
-
-#### Web:
-1. Configure Firebase for web in `lib/firebase_options.dart`
-
-### 4. API Keys Configuration
-
-Create a file `lib/config/secrets.dart`:
-
-```dart
-class AppSecrets {
-  static const String googleMapsApiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
-  static const String twilioAccountSid = 'YOUR_TWILIO_ACCOUNT_SID';
-  static const String twilioAuthToken = 'YOUR_TWILIO_AUTH_TOKEN';
-  static const String twilioPhoneNumber = 'YOUR_TWILIO_PHONE_NUMBER';
-}
-```
-
-### 5. Firebase Firestore Setup
-
-Initialize your Firestore database with the following structure:
-
-```
-users/
-  {userId}/
-    - email: string
-    - phone: string
-    - name: string
-    - role: string (student/proctor/staff)
-    - registeredProctors: array
-    - createdAt: timestamp
-
-emergencyAlerts/
-  {alertId}/
-    - studentId: string
-    - studentName: string
-    - location: GeoPoint
-    - status: string (active/resolved/escalated)
-    - timestamp: timestamp
-    - description: string
-    - assignedProctor: string
-
-proctors/
-  {proctorId}/
-    - name: string
-    - phone: string
-    - email: string
-    - campus: string
-    - activeAlerts: array
-    - createdAt: timestamp
-```
-
-### 6. Enable Firebase Features
-
-In Firebase Console:
-- ✅ Enable Firestore Database
-- ✅ Enable Authentication (Phone)
-- ✅ Enable Cloud Functions
-- ✅ Enable Cloud Messaging (FCM)
-- ✅ Set up Firestore Security Rules
-
----
-
-## 🏃 Running the Application
-
-### Development Mode:
+### 2) Run the app
 
 ```bash
-# Run on connected device/emulator
 flutter run
-
-# Run with specific device
-flutter run -d <device_id>
-
-# Run in release mode
-flutter run --release
 ```
 
-### Web:
+Examples:
 
 ```bash
-flutter run -d web
+flutter run -d chrome
+flutter run -d windows
 ```
 
-### Build APK (Android):
-
-```bash
-flutter build apk --release
-```
-
-### Build IPA (iOS):
-
-```bash
-flutter build ios --release
-```
-
----
-
-## 📁 Project Structure
-
-```
-lib/
-├── main.dart                      # App entry point
-├── firebase_options.dart          # Firebase configuration
-├── config/
-│   ├── routes.dart                # App routing
-│   └── theme.dart                 # UI theme configuration
-├── core/
-│   ├── errors/
-│   ├── utils/
-│   └── widgets/                   # Reusable widgets
-├── data/
-│   ├── models/                    # Data models
-│   ├── repositories/              # Repository pattern
-│   └── services/
-│       ├── firebase_service.dart
-│       ├── location_service.dart
-│       └── notification_service.dart
-├── domain/
-│   ├── entities/                  # Business logic entities
-│   └── use_cases/
-├── presentation/
-│   ├── pages/                     # Screen pages
-│   ├── providers/                 # State management (Provider/GetX)
-│   └── widgets/                   # UI components
-└── functions/                     # Firebase Cloud Functions
-
-android/                           # Android configuration
-ios/                              # iOS configuration
-web/                              # Web configuration
-functions/                         # Firebase Cloud Functions (Node.js)
-docs/                             # Documentation
-```
-
----
-
-## 🔒 Firestore Security Rules
-
-Apply these security rules in Firestore Console:
-
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Users collection - only own data
-    match /users/{userId} {
-      allow read, write: if request.auth.uid == userId;
-    }
-    
-    // Emergency alerts - students create, proctors read
-    match /emergencyAlerts/{alertId} {
-      allow create: if request.auth.uid != null;
-      allow read: if request.auth.uid != null;
-      allow update: if request.auth.uid != null;
-    }
-    
-    // Proctors collection - public read, own write
-    match /proctors/{proctorId} {
-      allow read: if true;
-      allow write: if request.auth.uid == proctorId;
-    }
-  }
-}
-```
-
----
-
-## 🔄 Firebase Cloud Functions
-
-Deploy backend functions:
+### 3) Setup and run Cloud Functions locally
 
 ```bash
 cd functions
 npm install
-firebase deploy --only functions
+npm run start
 ```
 
-**Key Functions:**
-- `sendAlertNotification()` - Sends SMS to proctors
-- `escalateAlert()` - Multi-tier alert escalation
-- `createUser()` - User initialization on signup
-- `updateLocation()` - Real-time location updates
+### 4) Deploy Cloud Functions
 
----
+```bash
+cd functions
+npm run deploy
+```
 
-## 📞 SMS Gateway Integration (Twilio)
+## Environment and Secrets
 
-1. Sign up for [Twilio](https://www.twilio.com/)
-2. Get Account SID, Auth Token, and Phone Number
-3. Configure in Firebase Cloud Functions:
-   ```bash
-   firebase functions:config:set twilio.account_sid="YOUR_SID"
-   firebase functions:config:set twilio.auth_token="YOUR_TOKEN"
-   firebase functions:config:set twilio.phone_number="YOUR_NUMBER"
-   ```
+This repository expects sensitive credentials via environment/config variables for services such as SendGrid and Twilio in the Cloud Functions runtime.
 
----
+Do not commit secrets to Git.
 
-## 🧪 Testing
+## Testing
 
-Run tests:
+Run Flutter tests:
 
 ```bash
 flutter test
 ```
 
-Test specific file:
+## Documentation
 
-```bash
-flutter test test/widget_test.dart
-```
+Additional project documents are available in `docs/`, including:
 
----
+- `FIREBASE_FUNCTIONS.md`
+- `OPTIMIZED_ESCALATION_WORKFLOW.md`
+- `PERSISTENT_LOGIN_IMPLEMENTATION.md`
+- `REALTIME_GPS_FIX_PLAN.md`
+- `SHAKE_ALERT_ESCALATION_SPEC.md`
+- `SHAKE_SERVICE_INTEGRATION.md`
+- `SMS_TO_MULTIPLE_PROCTORS_PLAN.md`
+- `SafeLink_NSTU_Project_Documentation.md`
 
-## 🐛 Troubleshooting
+## Contributing
 
-### Firebase Connection Issues:
-- Verify `google-services.json` and `GoogleService-Info.plist` are in correct locations
-- Check Firebase project ID matches in `firebase.json`
-- Ensure Firebase project is active in Console
+1. Create a feature branch.
+2. Make your changes.
+3. Open a pull request with a clear summary.
 
-### GPS Not Working:
-- Grant location permissions on device
-- Ensure Google Maps API key is correctly set
-- Check location service is enabled on device
+## License
 
-### SMS Not Sending:
-- Verify Twilio credentials
-- Check Twilio account has sufficient credits
-- Verify phone numbers are in correct format
-
-### Firestore Rules Error:
-- Check user is authenticated
-- Verify user ID matches Firestore document
-- Review Firestore Security Rules in Console
-
----
-
-## 🚀 Deployment
-
-### Firebase Hosting (Web):
-
-```bash
-flutter build web --release
-firebase deploy --only hosting
-```
-
-### App Store (iOS):
-
-1. Create App Store Connect application
-2. Configure signing certificates
-3. Build and upload with Xcode
-
-### Google Play Store (Android):
-
-1. Create Google Play Console application
-2. Generate signed APK/AAB
-3. Upload to Play Console
-
----
-
-## 📚 Documentation
-
-- [Firebase Setup Guide](docs/FIREBASE_FUNCTIONS.md)
-- [Escalation Workflow](docs/OPTIMIZED_ESCALATION_WORKFLOW.md)
-- [GPS Implementation](docs/REALTIME_GPS_FIX_PLAN.md)
-- [Project Documentation](docs/SafeLink_NSTU_Project_Documentation.md)
-
----
-
-## 👥 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/YourFeature`)
-3. Commit changes (`git commit -m 'Add YourFeature'`)
-4. Push to branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
-
----
-
-## 📞 Support & Contact
-
-For issues, questions, or feature requests:
-
-- **GitHub Issues:** [SafeLink Issues](https://github.com/Jukta06/SafeLink-NSTU/issues)
-- **Email:** safelink.nstu@example.com
-- **Campus:** Noakhali Science and Technology University (NSTU)
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🎓 Acknowledgments
-
-- NSTU Administration & Campus Management
-- Firebase & Google Cloud Services
-- Flutter Community
-- Twilio Communications API
-
----
-
-## 🗺️ Roadmap
-
-- ✅ Real-time GPS tracking
-- ✅ Multi-proctor SMS alerts
-- ✅ Emergency escalation workflow
-- 🔄 **In Progress:** Advanced analytics dashboard
-- 📋 **Planned:** Offline mode support
-- 📋 **Planned:** Video call integration
-- 📋 **Planned:** AI-powered incident prediction
-
----
-
-**Last Updated:** March 2026 | **Version:** 1.0.0 | **Status:** Active Development
-
----
-
-*SafeLink - Making Campus Safer Together* 🛡️
+No license file is currently present in the repository root.
