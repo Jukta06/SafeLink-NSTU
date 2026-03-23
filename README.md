@@ -145,17 +145,5 @@ Run Flutter tests:
 flutter test
 ```
 
-## Documentation
-
-Additional project documents are available in `docs/`, including:
-
-- `FIREBASE_FUNCTIONS.md`
-- `OPTIMIZED_ESCALATION_WORKFLOW.md`
-- `PERSISTENT_LOGIN_IMPLEMENTATION.md`
-- `REALTIME_GPS_FIX_PLAN.md`
-- `SHAKE_ALERT_ESCALATION_SPEC.md`
-- `SHAKE_SERVICE_INTEGRATION.md`
-- `SMS_TO_MULTIPLE_PROCTORS_PLAN.md`
-- `SafeLink_NSTU_Project_Documentation.md`
 
 
