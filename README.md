@@ -18,10 +18,11 @@ SafeLink NSTU offers a fast and user-friendly safety workflow that allows users 
 
 ## ✨ Features
 - One-tap SOS activation: Instantly send an emergency alert with a single tap.
-- Real-time live location sharing: Captures and updates the user’s current location.
+- Real-time live location sharing: Captures and updates the student's current location.
+- Set Pulse feature: For indoor scenarios, students can optionally pre-select building and floor details to accelerate emergency context capture when entering        potentially risky areas. This step is optional and can be skipped.
 - Firebase-powered live backend sync: Alert events and status changes are updated instantly.
 - Emergency contact escalation support: Supports SMS/call based escalation workflows.
-- Alert status monitoring and cancel control: Users can monitor and cancel active SOS alerts.
+- Alert status monitoring and maintenance: The Proctorial and Security Bodies can monitor and manage active SOS alerts.
 - Multi-role dashboard support: Includes role-based flows such as student/proctor/security views.
 - Shake-trigger integration: Optional shake-based trigger support for quick emergency activation.
 - Volume button emergency trigger: Quick SOS activation using physical volume button press for hands-free operation.
