@@ -43,8 +43,8 @@ SafeLink NSTU offers a fast and user-friendly safety workflow that allows users 
 ## Local Development Setup
 Prerequisites
 - Flutter SDK installed
-- Dart SDK (comes with Flutter)
-- Node.js 18+ (for functions)
+- Dart SDK 
+- Node.js 
 - Firebase CLI 
 1) Clone and install Flutter dependencies
 git clone https://github.com/Jukta06/SafeLink-NSTU.git
