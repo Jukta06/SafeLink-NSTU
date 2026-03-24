@@ -1,6 +1,6 @@
 # SafeLink NSTU
 
-SafeLink NSTU is a mobile-first Women Safety SOS system designed to provide fast emergency support during critical situations. Users can trigger SOS alerts, share live location and notify relevant responders instantly through a simple and reliable interface.
+SafeLink NSTU is a dedicated mobile-based student safety application. This system ensures faster communication between students and university authorities during emergencies. Students can instantly trigger an SOS alert in critical situations. SafeLink NSTU aims to create a safer campus environment by leveraging technology, ensuring that every student can quickly receive help when they need it most.
 
 ## 🚨 Problem Statement
 The current system for reporting and responding to student emergencies at Noakhali Science and Technology University (NSTU) is entirely manual, leading to serious inefficiencies and delays in critical situations. When emergencies such as ragging, harassment, or other incidents occur, students have to contact Teachers, Proctor Office or call them directly, a process that is slow and unreliable. There is no centralized platform to collect incident information, verify users, track alerts, or maintain accountability of responses. This lack of a streamlined system creates confusion about who should respond, increases response times, and lowers students’ confidence in campus safety.
