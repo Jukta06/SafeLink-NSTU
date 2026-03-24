@@ -62,5 +62,6 @@ npm run start
 cd functions
 npm run deploy
 Environment and Secrets
-Apk file
+
+## Apk file
 Download link: https://github.com/Jukta06/SafeLink-NSTU/releases/tag/Apk_file
