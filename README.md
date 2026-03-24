@@ -54,6 +54,7 @@ flutter run
 Examples:
 
 flutter run -d chrome
+
 3) Setup and run Cloud Functions locally
 cd functions
 npm install
