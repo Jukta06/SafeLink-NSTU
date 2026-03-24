@@ -50,6 +50,7 @@ git clone https://github.com/Jukta06/SafeLink-NSTU.git
 cd SafeLink-NSTU
 flutter pub get
 2) Run the app
+
 flutter run
 Examples:
 
