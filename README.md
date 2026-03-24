@@ -33,18 +33,18 @@ SafeLink NSTU offers a fast and user-friendly safety workflow that allows users 
 - Map and location visualization: Google Maps Flutter
 - Notification handling: Firebase Messaging + Flutter Local Notifications
 ## 📊 System Workflow
-User triggers SOS from the app
-System captures current location
-Alert data is sent to Firebase in real time
-Emergency status and location updates are synced instantly
-Responders can process/accept/reject alerts
-User can cancel SOS alert to prevent false alarm.
-Local Development Setup
+- User triggers SOS from the app
+- System captures current location
+- Alert data is sent to Firebase in real time
+- Emergency status and location updates are synced instantly
+- Responders can process/accept/reject alerts
+- User can cancel SOS alert to prevent false alarm.
+## Local Development Setup
 Prerequisites
-Flutter SDK installed
-Dart SDK (comes with Flutter)
-Node.js 18+ (for functions)
-Firebase CLI 
+- Flutter SDK installed
+- Dart SDK (comes with Flutter)
+- Node.js 18+ (for functions)
+- Firebase CLI 
 1) Clone and install Flutter dependencies
 git clone https://github.com/Jukta06/SafeLink-NSTU.git
 cd SafeLink-NSTU
