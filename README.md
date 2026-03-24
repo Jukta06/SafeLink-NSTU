@@ -9,29 +9,29 @@ SafeLink NSTU solves this by enabling one-tap SOS activation with real-time loca
 ## 💡 Solution Overview
 SafeLink NSTU offers a fast and user-friendly safety workflow that allows users to:
 
--Trigger SOS alerts instantly
--Share live location in real time
--Notify responders through cloud-backed alert flows
--Track and control alert status
--Cancel alerts when the situation is safe
--The system is built for real-time performance and future scalability.
+- Trigger SOS alerts instantly
+- Share live location in real time
+- Notify responders through cloud-backed alert flows
+- Track and control alert status
+- Cancel alerts when the situation is safe
+- The system is built for real-time performance and future scalability.
 
 ## ✨ Features
--One-tap SOS activation: Instantly send an emergency alert with a single tap.
--Real-time live location sharing: Captures and updates the user’s current location.
--Firebase-powered live backend sync: Alert events and status changes are updated instantly.
--Emergency contact escalation support: Supports SMS/call based escalation workflows.
--Alert status monitoring and cancel control: Users can monitor and cancel active SOS alerts.
--Multi-role dashboard support: Includes role-based flows such as student/proctor/security views.
--Shake-trigger integration: Optional shake-based trigger support for quick emergency activation.
--Volume button emergency trigger: Quick SOS activation using physical volume button press for hands-free operation.
+- One-tap SOS activation: Instantly send an emergency alert with a single tap.
+- Real-time live location sharing: Captures and updates the user’s current location.
+- Firebase-powered live backend sync: Alert events and status changes are updated instantly.
+- Emergency contact escalation support: Supports SMS/call based escalation workflows.
+- Alert status monitoring and cancel control: Users can monitor and cancel active SOS alerts.
+- Multi-role dashboard support: Includes role-based flows such as student/proctor/security views.
+- Shake-trigger integration: Optional shake-based trigger support for quick emergency activation.
+- Volume button emergency trigger: Quick SOS activation using physical volume button press for hands-free operation.
 ## 🛠️ Technologies Used
-Frontend app development: Flutter (Dart)
-Backend services: Firebase (Cloud Firestore, Authentication, Cloud Functions, Messaging)
-Real-time alert and status updates: Firebase services
-Location services: Geolocator + Geocoding
-Map and location visualization: Google Maps Flutter
-Notification handling: Firebase Messaging + Flutter Local Notifications
+- Frontend app development: Flutter (Dart)
+- Backend services: Firebase (Cloud Firestore, Authentication, Cloud Functions, Messaging)
+- Real-time alert and status updates: Firebase services
+- Location services: Geolocator + Geocoding
+- Map and location visualization: Google Maps Flutter
+- Notification handling: Firebase Messaging + Flutter Local Notifications
 ## 📊 System Workflow
 User triggers SOS from the app
 System captures current location
